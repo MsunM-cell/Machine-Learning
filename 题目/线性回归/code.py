@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 
 A = np.eye(5)
 
-### 单变量的线性回归
+# 单变量的线性回归
 
 # Plotting the Data
 path = 'ex1data1.txt'
@@ -56,6 +56,7 @@ alpha = 0.01
 iters = 1500
 
 g, cost = gradientDescent(X, y, theta, alpha, iters)
+print(g)
 
 predict1 = [1, 3.5] * g.T
 predict2 = [1, 7] * g.T
@@ -74,7 +75,7 @@ ax.set_title('Predicted Profit vs. Population Size')
 # plt.show()
 
 
-### 多变量的线性回归
+# 多变量的线性回归
 
 path = 'ex1data2.txt'
 data2 = pd.read_csv(path, header=None, names=['Size', 'Bedrooms', 'Price'])
@@ -95,5 +96,12 @@ theta2 = np.matrix(np.array([0, 0, 0]))
 
 g2, cost2 = gradientDescent(X2, y2, theta2, alpha, iters)
 
+# 正规方程
 
 
+def normalEquation(X, y):
+    theta = np.linalg.inv(X.T@X)@X.T@y
+    return theta
+
+final_theta = normalEquation(X, y)
+print(final_theta)
